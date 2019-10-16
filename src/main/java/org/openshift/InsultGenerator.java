@@ -20,12 +20,15 @@ public class InsultGenerator {
 			String username = System.getenv("POSTGRESQL_USER");
 			String password = System.getenv("PGPASSWORD");
 			Connection connection = DriverManager.getConnection(databaseURL, username, password);
-
+            System.out.println("Connected to the PostgreSQL server: " + databaseURL + " with user: " + username);
 			if (connection != null) {
+                System.out.println("Connected to the PostgreSQL server successfully.");
 				String SQL = "select a.string AS first, b.string AS second, c.string AS noun from short_adjective a , long_adjective b, noun c ORDER BY random() limit 1";
 				Statement stmt = connection.createStatement();
 				ResultSet rs = stmt.executeQuery(SQL);
+                System.out.println("Get the results from the PostgreSQL server successfully.");
 				while (rs.next()) {
+				    System.out.println("Process the result: " + rs.getString());
 					if (vowels.indexOf(rs.getString("first").charAt(0)) == -1) {
 						article = "a";
 					}
