@@ -28,7 +28,7 @@ public class InsultGenerator {
 				ResultSet rs = stmt.executeQuery(SQL);
                 System.out.println("Get the results from the PostgreSQL server successfully.");
 				while (rs.next()) {
-				    System.out.println("Process the result: " + rs.getString());
+				    System.out.println("Process the result: " + rs.getString("first"));
 					if (vowels.indexOf(rs.getString("first").charAt(0)) == -1) {
 						article = "a";
 					}
